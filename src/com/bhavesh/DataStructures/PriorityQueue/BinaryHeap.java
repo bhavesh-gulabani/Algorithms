@@ -48,10 +48,7 @@ public class BinaryHeap<T extends Comparable<T>> {
         for (T element : elements) {
             heap.add(element);
         }
-
         heapSize = heapCapacity = elements.size();
-
-        System.out.println("Called construction");
     }
 
     // Check if priority queue is empty
