@@ -32,16 +32,16 @@ public class BubbleSort {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int numberOfElements = scanner.nextInt();
-        int[] list = new int[numberOfElements];
+        int[] array = new int[numberOfElements];
 
         for (int i = 0; i < numberOfElements; i++) {
-            list[i] = scanner.nextInt();
+            array[i] = scanner.nextInt();
         }
 
-        bubbleSort(list);
+        bubbleSort(array);
 
         for (int i = 0; i < numberOfElements; i++) {
-            System.out.print(list[i] + " ");
+            System.out.print(array[i] + " ");
         }
     }
 }
