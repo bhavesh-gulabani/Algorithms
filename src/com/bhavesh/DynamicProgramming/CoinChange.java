@@ -1,4 +1,4 @@
-package com.bhavesh.DP;
+package com.bhavesh.DynamicProgramming;
 
 import java.util.Arrays;
 import java.util.Scanner;
