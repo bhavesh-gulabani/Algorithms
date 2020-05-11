@@ -1,8 +1,8 @@
 /*
- * Implementation of an adjacency list representation of a graph
+ * Implementation of an adjacency list representation of a directed weighted graph
  */
 
-package com.bhavesh.GraphTheory;
+package com.bhavesh.GraphTheory.DepthFirstSearch;
 
 import java.util.ArrayList;
 import java.util.HashMap;

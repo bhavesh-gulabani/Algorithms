@@ -1,40 +1,41 @@
 /*
- * An implementation of a recursive approach to DFS with an adjacency list representation of a graph
+ * An implementation of an iterative approach to DFS with an adjacency list representation of a graph
  * Time complexity: O(V + E)
  */
 
-package com.bhavesh.GraphTheory;
+package com.bhavesh.GraphTheory.DepthFirstSearch;
 
 import java.util.List;
+import java.util.Stack;
 
-public class DepthFirstSearchRecursive {
+public class DepthFirstSearchIterative {
 
     // Perform a depth first search on the graph counting
     // the number of nodes traversed starting at some position
-    public static long dfs(int start, GraphAdjacencyList graph) {
+    public static int dfs(int start, GraphAdjacencyList graph) {
+        int count = 0;
         final int N = graph.getNumNodes();
         boolean[] visited = new boolean[N];
-        return dfs(start, visited, graph);
-    }
+        Stack<Integer> stack = new Stack<>();
 
-    // Actual recursive function to perform the traversal
-    private static long dfs(int at, boolean[] visited, GraphAdjacencyList graph) {
+        // Start by visiting the start node
+        stack.push(start);
+        visited[start] = true;
 
-        if (visited[at]) return 0L;
+        while (!stack.isEmpty()) {
+            int node = stack.pop();
+            count++;
+            List<GraphAdjacencyList.Edge> edges = graph.getListOfEdges(node);
 
-        visited[at] = true;
-        // System.out.println(at);
-        long count = 1;
-
-
-        // Visit all the edges adjacent to where we are at
-        List<GraphAdjacencyList.Edge> edges = graph.getListOfEdges(at);
-        if (edges != null) {
-            for (GraphAdjacencyList.Edge edge : edges) {
-                count += dfs(edge.to, visited, graph);
+            if (edges != null) {
+                for (GraphAdjacencyList.Edge edge : edges) {
+                    if (!visited[edge.to]) {
+                        stack.push(edge.to);
+                        visited[edge.to] = true;
+                    }
+                }
             }
         }
-
         return count;
     }
 
@@ -57,3 +58,5 @@ public class DepthFirstSearchRecursive {
         if (nodeCount != 1) System.err.println("Error with DFS");
     }
 }
+
+
