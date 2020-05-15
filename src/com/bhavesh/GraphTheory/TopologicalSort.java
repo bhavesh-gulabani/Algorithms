@@ -46,6 +46,34 @@ public class TopologicalSort {
         return ordering;
     }
 
+    // A useful application of the topological sort is to find the shortest
+    // path between two nodes in a DAG. Given an adjacency list this method
+    // finds the shortest path to all nodes starting at 'start'
+    public static Integer[] dagShortestPath(Map<Integer, List<Edge>> graph, int start, int n) {
+
+        int[] topSort = topologicalSort(graph, n);
+        Integer[] dist = new Integer[n];
+        dist[start] = 0;
+
+        for (int i = 0; i < n; i++) {
+
+            int nodeIndex = topSort[i];
+            if (dist[nodeIndex] != null) {
+                List<Edge> adjacentEdges = graph.get(nodeIndex);
+                if (adjacentEdges != null) {
+                    for (Edge edge : adjacentEdges) {
+
+                        int newDist = dist[nodeIndex] + edge.weight;
+                        if (dist[edge.to] == null)
+                            dist[edge.to] = newDist;
+                        else
+                            dist[edge.to] = Math.min(dist[edge.to], newDist);
+                    }
+                }
+            }
+        }
+        return dist;
+    }
 
     public static void main(String[] args) {
 
@@ -68,6 +96,14 @@ public class TopologicalSort {
         int[] ordering = topologicalSort(graph, N);
 
         System.out.println(Arrays.toString(ordering));
+
+        // Find the shortest path starting at node 0
+        Integer[] shortestPath = dagShortestPath(graph, 0, N);
+
+        // Every index i of shortestPath array gives the shortest distance from start node 0
+        // to the node with label i
+        System.out.println(Arrays.toString(shortestPath));
+
     }
 
     static class Edge {
@@ -79,8 +115,4 @@ public class TopologicalSort {
             this.weight = weight;
         }
     }
-
-
-
-
 }
