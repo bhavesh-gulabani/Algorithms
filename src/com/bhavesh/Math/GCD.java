@@ -1,0 +1,20 @@
+/*
+ * An implementation of finding the GCD of two numbers
+ * Time complexity: O(log(a + b))
+ */
+package com.bhavesh.Math;
+
+public class GCD {
+
+    public static long gcd(long a, long b) {
+        return b == 0 ? (a < 0 ? -a : a) : gcd(b, a % b);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(gcd(24, 18));    // 6
+        System.out.println(gcd(-24, 18));   // 6
+        System.out.println(gcd(40, 25));    // 5
+        System.out.println(gcd(120, 20));   // 20
+
+    }
+}
