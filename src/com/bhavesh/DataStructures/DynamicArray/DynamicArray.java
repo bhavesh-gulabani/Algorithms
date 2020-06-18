@@ -90,10 +90,9 @@ public class DynamicArray<T> implements Iterable<T>{
             if (obj == null) {
                 if (array[i] == null)
                     return i;
-                else {
+            } else {
                     if (obj.equals(array[i]))
                         return i;
-                }
             }
         }
         return -1;
